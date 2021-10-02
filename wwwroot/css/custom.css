@@ -55,3 +55,30 @@ p {
 address {
     font-size: 1.2em;
 }
+
+table {
+    background-color: #66A2BA;
+}
+
+a {
+    color: #66A2BA;
+}
+
+    a:hover {
+        color: #117A8B
+    }
+
+.btn-crud {
+    background-color: #66A2BA;
+    color: #EEEEEE;
+    border-radius: 45%;
+    padding: 14px 40px;
+}
+
+    .btn-crud:hover {
+        transition: 0.4s;
+        background-color: #117A8B;
+        color: #EEEEEE;
+        border-radius: 50%;
+        padding: 14px 40px;
+    }

@@ -6,12 +6,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Trackity.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Trackity.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+
 
         public HomeController(ILogger<HomeController> logger)
         {
