@@ -21,9 +21,9 @@ namespace Trackity.Models
         [Range(1, 10000, ErrorMessage = "Expense must be between 1 and 10000.")]
         public double? Cost { get; set; }
 
-        //[Required(ErrorMessage = "Please enter expense type.")]
-        //public string TypeId { get; set; }
-        //public Type Type { get; set; }
+        [Required(ErrorMessage = "Please enter expense type.")]
+        public string TypeId { get; set; }
+        public Type Type { get; set; }
 
 
 
