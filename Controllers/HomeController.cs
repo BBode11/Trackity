@@ -13,16 +13,22 @@ namespace Trackity.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private ExpenseContext _context { get; set; }
 
-
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ExpenseContext ctx)
         {
             _logger = logger;
+            _context = ctx;
         }
+
 
         public IActionResult Index()
         {
-            return View();
+            var expenses = _context.Expenses
+                .Include(e => e.Type)
+                .OrderBy(e => e.Name)
+                .ToList();
+            return View(expenses);
         }
 
         public IActionResult About()

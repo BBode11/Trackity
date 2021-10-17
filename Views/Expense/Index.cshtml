@@ -22,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.Cost)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Type.Name)
+                Type
             </th>
         </tr>
     </thead>
@@ -39,7 +39,7 @@
                 @Html.DisplayFor(modelItem => item.Cost)
             </td>
             <th>
-                @Html.DisplayNameFor(model => model.Type.Name)
+                @Html.DisplayNameFor(modelItem => item.Type.Name)
             </th>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ExpenseId" class="text-light">Edit</a> |

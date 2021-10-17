@@ -21,6 +21,7 @@ namespace Trackity.Controllers
         // GET: Expense
         public async Task<IActionResult> Index()
         {
+
             return View(await _context.Expenses.ToListAsync());
         }
 
@@ -31,7 +32,7 @@ namespace Trackity.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.Types = _context.Types.OrderBy(t => t.Name).ToList();
             var expense = await _context.Expenses
                 .FirstOrDefaultAsync(m => m.ExpenseId == id);
             if (expense == null)
@@ -45,7 +46,9 @@ namespace Trackity.Controllers
         // GET: Expense/Create
         public IActionResult Create()
         {
-            return View();
+            ViewBag.Action = "Add";
+            ViewBag.Types = _context.Types.OrderBy(t => t.Name).ToList();
+            return View("Edit", new Expense());
         }
 
         // POST: Expense/Create
@@ -53,7 +56,7 @@ namespace Trackity.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ExpenseId,Date,Name,Cost")] Expense expense)
+        public async Task<IActionResult> Create([Bind("ExpenseId,Date,Name,Cost,Type")] Expense expense)
         {
             if (ModelState.IsValid)
             {
@@ -71,7 +74,8 @@ namespace Trackity.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.Action = "Edit";
+            ViewBag.Types = _context.Types.OrderBy(t => t.Name).ToList();
             var expense = await _context.Expenses.FindAsync(id);
             if (expense == null)
             {
@@ -85,7 +89,7 @@ namespace Trackity.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ExpenseId,Date,Name,Cost")] Expense expense)
+        public async Task<IActionResult> Edit(int id, [Bind("ExpenseId,Date,Name,Cost,Type")] Expense expense)
         {
             if (id != expense.ExpenseId)
             {
@@ -112,7 +116,12 @@ namespace Trackity.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(expense);
+            else
+            {
+                ViewBag.Action = (expense.ExpenseId == 0) ? "Add" : "Edit";
+                ViewBag.Types = _context.Types.OrderBy(t => t.Name).ToList();
+                return View(expense);
+            }
         }
 
         // GET: Expense/Delete/5
@@ -122,7 +131,7 @@ namespace Trackity.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.Types = _context.Types.OrderBy(t => t.Name).ToList();
             var expense = await _context.Expenses
                 .FirstOrDefaultAsync(m => m.ExpenseId == id);
             if (expense == null)
