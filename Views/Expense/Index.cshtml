@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Trackity.Models.Expense>
+﻿@model List<Expense>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,13 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+                Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cost)
+                Cost
             </th>
             <th>
                 Type
@@ -27,24 +27,24 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var expense in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
+                @expense.Date
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @expense.Name
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cost)
+                @expense.Cost
             </td>
             <th>
-                @Html.DisplayNameFor(modelItem => item.Type.Name)
+               @expense.Type.Name 
             </th>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ExpenseId" class="text-light">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ExpenseId" class="text-light">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ExpenseId" class="text-light">Delete</a>
+                <a asp-action="Edit" asp-route-id="@expense.ExpenseId" class="text-light">Edit</a> |
+                <a asp-action="Details" asp-route-id="@expense.ExpenseId" class="text-light">Details</a> |
+                <a asp-action="Delete" asp-route-id="@expense.ExpenseId" class="text-light">Delete</a>
             </td>
         </tr>
 }

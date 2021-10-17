@@ -1,4 +1,4 @@
-﻿@model Trackity.Models.Expense
+﻿@model Expense
 
 @{
     ViewData["Title"] = "Edit";
@@ -29,7 +29,7 @@
                     <option value="">Select a type</option>
                     @foreach (Trackity.Models.Type t in ViewBag.Types)
                     {
-                        <option value="@t.Name">@t.Name</option>
+                        <option value="@t.TypeId">@t.Name</option>
                     }
                 </select>
 
